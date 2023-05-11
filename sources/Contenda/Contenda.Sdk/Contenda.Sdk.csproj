@@ -15,6 +15,9 @@
 	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageProjectUrl>https://github.com/Contenda-Team/contenda-dotnet-sdk</PackageProjectUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<Version>0.1.0</Version>
+	<RepositoryUrl>https://github.com/Contenda-Team/contenda-dotnet-sdk</RepositoryUrl>
   </PropertyGroup>
 
 	<ItemGroup>
