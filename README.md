@@ -1,3 +1,5 @@
+![Contenda Logo](/assets/logo_dark.png)
+
 # Contenda .NET SDK
 
 **Contenda** is the content catalyst for developer advocates - learn more at ✨ https://contenda.co ✨
