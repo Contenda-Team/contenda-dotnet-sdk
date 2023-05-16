@@ -1,4 +1,4 @@
-![Contenda Logo](/assets/logo_white.png | width=100)
+![Contenda Logo](/assets/logo_white.png)
 
 # Contenda .NET SDK
 
