@@ -22,6 +22,6 @@ Make sure to call `Authenticate` before calling any APIs that require authentica
 
 ## Need more help?
 
-💡 Read more about Contenda's API here https://prod.contenda.io/docs.
+💡 Read more about Contenda's API here https://prod.contenda.co/.
 
 💬 Find us on twitter [@ContendaCo](https://twitter.com/ContendaCo) or join our public [Discord](https://discord.gg/bYda4pQz2v).
