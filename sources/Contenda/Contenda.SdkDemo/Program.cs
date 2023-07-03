@@ -23,6 +23,8 @@ var jobId = newJob!.JobId;
 
 Console.WriteLine($"Successfully submitted job: {jobId}");
 
+await Task.Delay(TimeSpan.FromSeconds(5));
+
 var jobStatus = await api.GetJobStatus(jobId!);
 
 while (jobStatus!.Status != "succeeded" && jobStatus.Status != "failed")

@@ -65,7 +65,7 @@ namespace Contenda.Sdk
         public async Task<UsageLimits?> GetUsageLimits()
         {
             var client = PoorMansHttpClientFactory.Instance.Client;
-            var uri = $"{_apiBaseUri}{Constants.Version2Prefix}{Constants.JobsV2.UsageLimits}";
+            var uri = $"{_apiBaseUri}{Constants.MainVersion3Prefix}{Constants.JobsV3.UsageLimits}";
 
             _authProvider.ModifyHeadersCallback(client);
             uri = _authProvider.ModifyQueryCallback(uri);
@@ -84,7 +84,7 @@ namespace Contenda.Sdk
         public async Task<JobStatusResult?> GetJobStatus(string jobId)
         {
             var client = PoorMansHttpClientFactory.Instance.Client;
-            var uri = $"{_apiBaseUri}{Constants.Version2Prefix}{Constants.JobsV2.Status}{HttpUtility.UrlEncode(jobId)}";
+            var uri = $"{_apiBaseUri}{Constants.MainVersion3Prefix}{Constants.JobsV3.Status}{HttpUtility.UrlEncode(jobId)}";
 
             _authProvider.ModifyHeadersCallback(client);
             uri = _authProvider.ModifyQueryCallback(uri);
@@ -126,12 +126,12 @@ namespace Contenda.Sdk
         public async Task<JobStatusResult?> SubmitVideoToBlogJob(string sourceId, VideoToBlogJobSubType subType, string? statusUpdateWebhookUrl = null, string? statusUpdateEmail = null)
         {
             var client = PoorMansHttpClientFactory.Instance.Client;
-            var uri = $"{_apiBaseUri}{Constants.Version2Prefix}{Constants.JobsV2.SubmitVideoToBlog}";
+            var uri = $"{_apiBaseUri}{Constants.MainVersion3Prefix}{Constants.JobsV3.SubmitVideoToBlog}";
 
             _authProvider.ModifyHeadersCallback(client);
             uri = _authProvider.ModifyQueryCallback(uri);
 
-            var content = new StringContent(JsonConvert.SerializeObject(new SubmitJobV2
+            var content = new StringContent(JsonConvert.SerializeObject(new SubmitJobV3
             {
                 source_id = sourceId,
                 status_update_email = statusUpdateEmail,
@@ -153,7 +153,7 @@ namespace Contenda.Sdk
         public async Task<string> GetBlogAsMarkdown(string blogId)
         {
             var client = PoorMansHttpClientFactory.Instance.Client;
-            var uri = $"{_apiBaseUri}{Constants.Version2Prefix}{Constants.ContentV2.BlogMarkdown}";
+            var uri = $"{_apiBaseUri}{Constants.MainVersion3Prefix}{Constants.ContentV3.BlogMarkdown}";
 
             uri = string.Format(uri, blogId);
 

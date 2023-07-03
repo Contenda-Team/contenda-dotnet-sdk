@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Contenda.Sdk.Exceptions;
 using Contenda.Sdk.Models.Request;
 using Contenda.Sdk.Models.Result;
@@ -56,11 +56,11 @@ namespace Contenda.Sdk.Auth
 
             var client = PoorMansHttpClientFactory.Instance.Client;
 
-            var uri = $"{apiBaseUri}{Constants.Version2Prefix}{Constants.IdentityV2.Token}";
-            var body = new TokenV2
+            var uri = $"{apiBaseUri}{Constants.AuthVersion1Prefix}{Constants.AuthV1.Token}";
+            var body = new AuthV1Token
             {
                 api_key = _apiKey,
-                email = _email
+                user_email = _email
             };
             var bodyString = JsonConvert.SerializeObject(body);
 
@@ -79,13 +79,13 @@ namespace Contenda.Sdk.Auth
             }
         }
 
-        private bool EnsureValid() => DateTime.Now < ValidUntil();
+        private bool EnsureValid() => DateTime.UtcNow < ValidUntil();
 
         /// <inheritdoc />
         public void ModifyHeadersCallback(HttpClient httpClient)
         {
             if (!EnsureValid()) throw new AuthenticationException("You have to be authenticated to call APIs with authentication.");
-            // nothing to do here
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiToken);
         }
 
         /// <inheritdoc />
@@ -93,11 +93,10 @@ namespace Contenda.Sdk.Auth
         {
             if (!EnsureValid()) throw new AuthenticationException("You have to be authenticated to call APIs with authentication.");
 
-            var nvc = HttpUtility.ParseQueryString((new Uri(currentQuery)).Query);
-            var paramChar = nvc.Count == 0 ? "?" : "&";
-            return $"{currentQuery}{paramChar}token={HttpUtility.UrlEncode(_apiToken)}";
-        }
+            // nothing to do here
 
+            return currentQuery;
+        }
 
     }
 }

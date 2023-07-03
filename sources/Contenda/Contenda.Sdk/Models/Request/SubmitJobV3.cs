@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace Contenda.Sdk.Models.Request
 {
-    internal class SubmitJobV2
+    internal class SubmitJobV3
     {
         public string? source_id { [UsedImplicitly] get; set; }
 
